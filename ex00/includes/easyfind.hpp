@@ -6,19 +6,18 @@
 #include <vector>
 
 template <typename T>
-T & easyfind(T & container, int n)
+void easyfind(T & container, int n)
 {
-	
-	vector<int>::iterator itr = std::find(arr.begin(), arr.end(), n);
-	if (itr != end(arr))
+	std::vector<int>::iterator itr;
+    for (itr = container.begin(); itr != container.end(); itr++)
 	{
-		cout << "Element " << n << " is present at index " << distance(arr, itr) << " in the given array";
+		if (*itr == n)
+			break;
 	}
+	if (itr != container.end())
+		std::cout << "Element " << n << " is present at index " << itr - container.begin() << " in the given container" << std::endl;
 	else
-	{
-		cout << "Element is not present in the given array";
-	}
-	return (NULL);
+		std::cout << "Element " << n << " is not present in the given container" << std::endl;
 }
 
 #endif
