@@ -28,7 +28,10 @@ void Span::addNumber(int n)
 
 int Span::shortestSpan(void)
 {
-	return (1);
+	std::vector<int> sorted(_span);
+	std::sort(sorted.begin(), sorted.end());
+	std::vector<int>::iterator itr = std::min_element(sorted.begin(), sorted.end());
+	return (*(itr + 1) - *itr);
 }
 
 int Span::longestSpan(void)

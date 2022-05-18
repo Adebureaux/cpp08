@@ -6,9 +6,9 @@ int main(void)
 	Span limit(10);
 
 	test.addNumber(1);
-	test.addNumber(2);
-	test.addNumber(5);
-	test.addNumber(1);
+	test.addNumber(3);
+	test.addNumber(299);
+	test.addNumber(300);
 	limit = test;
 
 	std::cout << test.shortestSpan() << std::endl;
