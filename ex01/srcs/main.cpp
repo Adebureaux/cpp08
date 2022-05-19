@@ -2,16 +2,24 @@
 
 int main(void)
 {
-	Span test(5);
-	Span limit(10);
+	{
+		Span sp = Span(5);
+		sp.addNumber(6);
+		sp.addNumber(3);
+		sp.addNumber(17);
+		sp.addNumber(9);
+		sp.addNumber(11);
+		std::cout << sp.shortestSpan() << std::endl;
+		std::cout << sp.longestSpan() << std::endl;
+	}
+	{
+		Span sp = Span(10000);
 
-	test.addNumber(1);
-	test.addNumber(3);
-	test.addNumber(299);
-	test.addNumber(300);
-	limit = test;
-
-	std::cout << test.shortestSpan() << std::endl;
-	
+		srand(time(NULL));
+		for (int i = 0; i < 10000; i++)
+			sp.addNumber(rand());
+		std::cout << sp.shortestSpan() << std::endl;
+		std::cout << sp.longestSpan() << std::endl;
+	}
 	return (0);	
 }

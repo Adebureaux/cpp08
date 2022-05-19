@@ -5,20 +5,28 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <climits>
 
 class Span
 {
 	public:
+	Span();
 	Span(const unsigned int N);
 	Span(const Span &other);
 	Span &operator=(const Span &other);
 	~Span();
 
 	void addNumber(int n);
-	int shortestSpan(void);
-	int longestSpan(void);
+	unsigned int shortestSpan(void);
+	unsigned int longestSpan(void);
 
 	class SpanOverflow : public std::exception
+	{
+		public:
+		virtual const char* what() const throw();
+	};
+	
+	class CannotFindDistance : public std::exception
 	{
 		public:
 		virtual const char* what() const throw();
