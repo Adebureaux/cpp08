@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <iterator>
 #include <climits>
 
 class Span
@@ -17,8 +18,10 @@ class Span
 	~Span();
 
 	void addNumber(int n);
-	unsigned int shortestSpan(void);
-	unsigned int longestSpan(void);
+	unsigned int shortestSpan(void) const;
+	unsigned int longestSpan(void) const;
+	void addRangeNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end);
+	void printSpan(void);
 
 	class SpanOverflow : public std::exception
 	{
@@ -35,7 +38,6 @@ class Span
 	private:
 	std::vector<int>			_span;
 	const unsigned int			_N;
-	unsigned int				_current;
 };
 
 #endif

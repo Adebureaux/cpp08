@@ -1,8 +1,8 @@
 #include "../includes/Span.hpp"
 
-Span::Span() : _span(std::vector<int>()), _N(100), _current(0) {}
+Span::Span() : _span(std::vector<int>(0)), _N(0) {}
 
-Span::Span(const unsigned int N) : _span(std::vector<int>()), _N(N), _current(0) {}
+Span::Span(const unsigned int N) : _span(std::vector<int>()), _N(N) {}
 
 Span::Span(const Span &other) : _N(other._N)
 {
@@ -11,10 +11,9 @@ Span::Span(const Span &other) : _N(other._N)
 
 Span &Span::operator=(const Span &other)
 {
-	if (other._current > _N)
+	if (other._span.size() > _N)
 		throw Span::SpanOverflow();
 	_span = other._span;
-	_current = other._current;
 	return (*this);
 }
 
@@ -22,15 +21,14 @@ Span::~Span() {}
 
 void Span::addNumber(int n)
 {
-	if (_current + 1 > _N)
+	if (_span.size() + 1 > _N)
 		throw Span::SpanOverflow();
 	_span.push_back(n);
-	_current++;
 }
 
-unsigned int Span::shortestSpan(void)
+unsigned int Span::shortestSpan(void) const
 {
-	if (_current < 2)
+	if (_span.size() < 2)
 		throw Span::CannotFindDistance();
 	unsigned int shortest = UINT_MAX;
 	std::vector<int> sorted(_span);
@@ -45,13 +43,27 @@ unsigned int Span::shortestSpan(void)
 	return (shortest);
 }
 
-unsigned int Span::longestSpan(void)
+unsigned int Span::longestSpan(void) const
 {
-	if (_current < 2)
+	if (_span.size() < 2)
 		throw Span::CannotFindDistance();
 	std::vector<int> sorted(_span);
 	std::sort(sorted.begin(), sorted.end());
 	return ((*(sorted.end() - 1) - *(sorted.begin())));
+}
+
+void Span::addRangeNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end)
+{
+	if (end - begin > _N)
+		throw Span::SpanOverflow();
+	_span.insert(_span.begin(), begin, end);
+}
+
+void Span::printSpan(void)
+{
+	std::vector<int>::iterator begin = _span.begin();
+	while (begin < _span.end())
+		std::cout << *(begin++) << std::endl;
 }
 
 char const *Span::SpanOverflow::what() const throw()
