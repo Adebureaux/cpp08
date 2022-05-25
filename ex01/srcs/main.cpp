@@ -15,6 +15,7 @@ int main(void)
 	{
 		Span sp(10000);
 		std::vector<int> v(10000);
+		std::srand(time(NULL));
 		std::generate(v.begin(), v.end(), std::rand);
 		
 		sp.addRangeNumbers(v.begin(), v.end());

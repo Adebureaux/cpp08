@@ -5,16 +5,12 @@
 #include <string>
 #include <vector>
 #include <cstdlib>
+#include <algorithm>
 
 template <typename T>
 void easyfind(T & container, int n)
 {
-	std::vector<int>::iterator itr;
-    for (itr = container.begin(); itr != container.end(); itr++)
-	{
-		if (*itr == n)
-			break;
-	}
+	std::vector<int>::iterator itr = std::find(container.begin(), container.end(), n);
 	if (itr != container.end())
 		std::cout << "Element " << n << " is present at index " << itr - container.begin() << " in the given container" << std::endl;
 	else
