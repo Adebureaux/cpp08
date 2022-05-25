@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <cstdlib>
 
 template <typename T>
 void easyfind(T & container, int n)

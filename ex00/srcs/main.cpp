@@ -13,9 +13,9 @@ int main(int ac, char **av)
 	else
 	{
 		std::vector<int> numbers(MAX_VAL);
-		srand(time(NULL));
+		std::srand(time(NULL));
 		for (int i = 0; i < MAX_VAL; i++)
-			numbers[i] =  (rand() % 500) + 1;
+			numbers[i] =  (std::rand() % 500) + 1;
 		easyfind(numbers, find);
 		return (0);
 	}
