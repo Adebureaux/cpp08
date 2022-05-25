@@ -5,15 +5,18 @@
 #include <string>
 #include <vector>
 #include <cstdlib>
+#include <iterator>
 #include <algorithm>
 #include <deque>
+#include <stack>
+#include <list>
 
 template <typename T>
 void easyfind(T & container, int n)
 {
 	typename T::iterator itr = std::find(container.begin(), container.end(), n);
 	if (itr != container.end())
-		std::cout << "Element " << n << " is present at index " << itr - container.begin() << " in the given container" << std::endl;
+		std::cout << "Element " << n << " is present at index " << std::distance(container.begin(), itr) << " in the given container" << std::endl;
 	else
 		std::cout << "Element " << n << " is not present in the given container" << std::endl;
 }

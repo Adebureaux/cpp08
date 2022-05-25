@@ -12,12 +12,24 @@ int main(int ac, char **av)
 		std::cout << av[0] << ": the number is not between 1 and " << MAX_VAL << std::endl;
 	else
 	{
-		std::deque<int> numbers(MAX_VAL);
 		std::srand(time(NULL));
+		std::vector<int> container(MAX_VAL);
 		for (int i = 0; i < MAX_VAL; i++)
-			numbers[i] =  (std::rand() % 500) + 1;
-		easyfind(numbers, find);
+			container[i] = (std::rand() % MAX_VAL) + 1;
+		{
+			std::deque<int> numbers(container.begin(), container.end());
+			easyfind(numbers, find);
+		}
+		{
+			std::vector<int> numbers(container);
+			easyfind(numbers, find);
+		}
+		{
+			std::list<int> numbers(container.begin(), container.end());
+			easyfind(numbers, find);
+		}
 		return (0);
 	}
 	return (1);
 }
+ 
